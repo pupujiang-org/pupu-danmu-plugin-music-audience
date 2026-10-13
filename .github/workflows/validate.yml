@@ -1,0 +1,21 @@
+name: Validate plugin source
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Validate static package source and MIT licensing
+        run: python3 scripts/package_plugins.py --check
+      - name: Build the package in runner temporary storage
+        run: |
+          version="$(python3 -c 'import json; print(json.load(open("plugins/music-audience/manifest.json", encoding="utf-8"))["version"])')"
+          python3 scripts/package_plugins.py --plugin music-audience --output "$RUNNER_TEMP/plugin-dist" --expected-version "$version"

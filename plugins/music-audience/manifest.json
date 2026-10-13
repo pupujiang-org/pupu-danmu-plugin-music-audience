@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "org.pupujiang.music-audience",
+  "name": "音乐观众",
+  "version": "1.0.0",
+  "description": "音乐直播场景的官方声明式角色与主题资源包。",
+  "author": "pupujiang",
+  "license": "MIT",
+  "min_host_version": "0.5.0b3",
+  "kind": "ai-participation",
+  "runtime_type": "declarative",
+  "plugin_api_version": 1,
+  "capabilities": ["chat_context", "host_llm", "persona", "topic_hints"],
+  "config_schema": {
+    "persona": {
+      "type": "select",
+      "label": "观众角色",
+      "required": true,
+      "options": ["listener", "musician"],
+      "default": "listener"
+    },
+    "focus": {
+      "type": "select",
+      "label": "讨论偏好",
+      "options": ["performance", "instruments", "genre"],
+      "default": "performance"
+    }
+  },
+  "recommended_pacing": {
+    "min_interval_seconds": 90,
+    "max_interval_seconds": 300,
+    "hourly_limit": 20
+  },
+  "resources": {
+    "personas": "personas.json",
+    "topics": "topics.json",
+    "prompt": "prompts/context.md"
+  }
+}

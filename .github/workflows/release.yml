@@ -1,0 +1,36 @@
+name: Build and publish plugin Release
+
+on:
+  push:
+    tags: [music-audience-v*]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.ref }}
+      - name: Build package from the tagged source
+        id: package
+        shell: bash
+        run: |
+          version="${GITHUB_REF_NAME#music-audience-v}"
+          python3 scripts/package_plugins.py --plugin music-audience --output dist --expected-version "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Publish ZIP and SHA-256 as Release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_VERSION: ${{ steps.package.outputs.version }}
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          gh release create "$RELEASE_TAG" \
+            "dist/music-audience-$RELEASE_VERSION.zip" \
+            "dist/music-audience-$RELEASE_VERSION.zip.sha256" \
+            --verify-tag \
+            --title "music-audience $RELEASE_VERSION" \
+            --notes "Official static data-only plugin package built from $RELEASE_SHA. The Registry validates the exact asset size and SHA-256 before cataloging."
