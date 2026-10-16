@@ -4,6 +4,10 @@ This is the official source repository for `org.pupujiang.music-audience`. The M
 
 The package is distinct from the fabric-buyer plugin, but its full music-domain response behavior has not yet passed the host compatibility and behavior review required for Registry listing. The Registry will list a version only after those checks and its fixed Release asset have been reviewed.
 
+## Python SDK reference
+
+This repository currently builds a data-only ZIP, so its plugin package does not depend on or bundle the SDK. Host protocol and replay tooling use the standalone [Pupu Danmu Plugin SDK v0.2.0](https://github.com/pupujiang-org/pupu-danmu-plugin-sdk/releases/tag/v0.2.0). If a local Worker prototype is developed, pin that release in the separate development environment; it does not make the published data-only ZIP executable or safe for remote execution.
+
 ## Validate and build
 
 Use Python 3.10 or newer:
