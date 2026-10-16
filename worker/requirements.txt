@@ -1,2 +1,2 @@
 pupu-danmu-plugin-sdk @ https://github.com/pupujiang-org/pupu-danmu-plugin-sdk/releases/download/v0.2.0/pupu_danmu_plugin_sdk-0.2.0-py3-none-any.whl \
-    --hash=sha256:53a1ec2639ad88bbc47975592361151bc109c1bd36f32fa5e516d0bfebf1b30b
+    --hash=sha256:558f86aa38748580bb55a42a9adf5158b52ae2a2cc78e8793a2bbbf206a9addb
