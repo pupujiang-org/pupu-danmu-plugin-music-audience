@@ -6,7 +6,14 @@ The package is distinct from the fabric-buyer plugin, but its full music-domain 
 
 ## Python SDK reference
 
-This repository currently builds a data-only ZIP, so its plugin package does not depend on or bundle the SDK. Host protocol and replay tooling use the standalone [Pupu Danmu Plugin SDK v0.2.0](https://github.com/pupujiang-org/pupu-danmu-plugin-sdk/releases/tag/v0.2.0). If a local Worker prototype is developed, pin that release in the separate development environment; it does not make the published data-only ZIP executable or safe for remote execution.
+The official package remains a data-only ZIP and does not bundle the SDK. The separate `worker/music_audience/` source provides a local SDK Replay entrypoint that receives bounded anonymous context and can request model output through the host capability. Its viewer and room inputs stay untrusted, and the host retains factual checks, settlement, and sending. Install the exact SDK wheel and run its regressions with:
+
+```powershell
+python -m pip install --require-hashes -r worker/requirements.txt
+python -m unittest discover -s tests -v
+```
+
+This is trusted development source only. It is not included in the data-only ZIP and does not authorize executing downloaded plugin code.
 
 ## Validate and build
 
