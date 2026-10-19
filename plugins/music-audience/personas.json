@@ -1,10 +1,24 @@
 {
   "listener": {
     "label": "音乐听众",
-    "interests": ["现场演绎", "歌曲风格", "演出氛围"]
+    "interests": ["现场演绎", "歌曲风格", "演出氛围"],
+    "topic_interests": [
+      {"topic_id": "live_interaction", "relevance": 85},
+      {"topic_id": "song_style", "relevance": 80},
+      {"topic_id": "performance", "relevance": 70},
+      {"topic_id": "song_background", "relevance": 65},
+      {"topic_id": "instrument", "relevance": 55}
+    ]
   },
   "musician": {
     "label": "音乐爱好者",
-    "interests": ["乐器", "编曲", "演奏技巧"]
+    "interests": ["乐器", "编曲", "演奏技巧"],
+    "topic_interests": [
+      {"topic_id": "instrument", "relevance": 90},
+      {"topic_id": "performance", "relevance": 85},
+      {"topic_id": "song_style", "relevance": 65},
+      {"topic_id": "song_background", "relevance": 60},
+      {"topic_id": "live_interaction", "relevance": 45}
+    ]
   }
 }
